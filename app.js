@@ -6,7 +6,6 @@ app.get('/', (req, res) => {
     res.send('Bienvenu dans notre API')
 })
 
-
 app.use(bodyParser.json());
 const port = 3000
 
