@@ -1,1 +1,79 @@
-<p>enregistrer-course works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enregistrer Courses</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+          <img src="../../assets/images/itineraire.png" alt="trajet">
+            <h1>Courses</h1>
+        </header>
+        <br>  <br><br>
+        <main>
+            <section class="formulaire">
+
+                <form action="#">
+                  <div class="container-trajet">
+                    <div class="Trajet">
+                      <img src="../../assets/images/broche.png" alt="trajet">
+                      <div class="inputs">
+                        <input type="text" id="depart" name="depart" placeholder="Point de départ">
+                        <hr><br>
+                        <input type="text" id="arrivee" name="arrivee" placeholder="Point d'arrivée">
+                    </div>
+                  </div>
+                  </div>
+                    <br>
+                  <div class="heure-date">
+                    <div class="heure">
+                        <label for="heure_depart">Heure de départ:</label><br>
+                        <input type="time" id="heure_depart" name="heure_depart" placeholder="Heure">
+                    </div>
+                    <div class="date">
+                        <label for="date_depart">Date de départ:</label><br>
+                        <input type="date" id="date_depart" name="date_depart">
+                    </div>
+                  </div>
+                    <br>
+                    <div class="container-siege">
+                      <label for="sieges"><b>Sièges disponibles:</b></label> <br>
+                      <div class="input-with-icon">
+                          <img src="../../assets/images/siege-de-voiture.png" alt="Siège">
+                          <input type="number" id="sieges" name="sieges" min="1">
+                      </div>
+                  </div>
+                  <br><br><hr>
+                  <div class="container-jours">
+                    <h3>Jours de la semaine:&nbsp;</h3><br>
+                    <label for="lundi">Lundi&nbsp; </label>
+                    <input type="checkbox" id="lundi" name="jour[]" value="Lundi"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="mardi">Mardi&nbsp;</label>
+                    <input type="checkbox" id="mardi" name="jour[]" value="Mardi"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="mercredi">Mercredi&nbsp;</label>
+                    <input type="checkbox" id="mercredi" name="jour[]" value="Mercredi"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="jeudi">Jeudi&nbsp;</label>
+                    <input type="checkbox" id="jeudi" name="jour[]" value="Jeudi"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="vendredi">Vendredi &nbsp;</label>
+                    <input type="checkbox" id="vendredi" name="jour[]" value="Vendredi">
+                  </div>
+
+                    <br><br>
+
+                    <div class="container-boutons">
+                        <button type="submit">Enregister la course</button><br> <br>
+                        <button type="reset">Annuler</button>
+                    </div>
+
+                </form>
+            </section>
+        </main>
+
+
+    </div>
+</body>
+
+</html>

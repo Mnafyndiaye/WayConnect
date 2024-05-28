@@ -11,7 +11,9 @@ describe('EnregistrerCourseComponent', () => {
       declarations: [ EnregistrerCourseComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(EnregistrerCourseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
