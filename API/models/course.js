@@ -12,4 +12,22 @@ const Course = sequelize.define('course', {
     driverId: { type: DataTypes.INTEGER, allowNull: false } // Référence au conducteur
 });
 
+router.get('/search', async (req, res) => {
+    try {
+        const { departure, destination, departureTime } = req.query;
+
+        const courses = await Course.findAll({
+            where: {
+                departure,
+                destination,
+                departureTime
+            }
+        });
+
+        res.status(200).json(courses);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 module.exports = Course;

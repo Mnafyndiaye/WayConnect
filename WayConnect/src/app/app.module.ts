@@ -8,6 +8,7 @@ import { ProfilConducteurComponent } from './profil-conducteur/profil-conducteur
 import { ProfilPassagerComponent } from './profil-passager/profil-passager.component';
 import { EnregistrerCourseComponent } from './enregistrer-course/enregistrer-course.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     ProfilConducteurComponent,
     ProfilPassagerComponent,
     EnregistrerCourseComponent,
-    SidenavComponent
+    SidenavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

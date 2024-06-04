@@ -1,20 +1,18 @@
-// db.js
-const mysql = require('mysql');
+const { Sequelize } = require('sequelize');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'apinafy',
-  password: 'Passer123',
-  database: 'wayconnect_db',
+// Configuration de la connexion à la base de données
+const sequelize = new Sequelize('wayconnect_db', 'apinafy', 'Passer123', {
+    host: 'localhost',
+    dialect: 'mysql'
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Erreur de connexion à la base de données MySQL :', err);
-    return;
-  }
-  console.log('Connecté à la base de données MySQL');
-});
+// Vérifier la connexion
+sequelize.authenticate()
+    .then(() => {
+        console.log('Connexion à la base de données MySQL réussie.');
+    })
+    .catch(err => {
+        console.error('Impossible de se connecter à la base de données :', err);
+    });
 
-
-module.exports = connection;
+module.exports = sequelize;

@@ -11,7 +11,7 @@ const authMiddleware = (req, res, next) => {
     }
 
     // Vérifier la validité du JWT
-    jwt.verify(token, 'secret_key', (err, decoded) => {
+    jwt.verify(token, secretkey, (err, decoded) => {
         if (err) {
             // Si le JWT n'est pas valide, rediriger l'utilisateur vers la page de connexion
             return res.redirect('/login');
@@ -20,5 +20,4 @@ const authMiddleware = (req, res, next) => {
         next();
     });
 };
-
 module.exports = authMiddleware;

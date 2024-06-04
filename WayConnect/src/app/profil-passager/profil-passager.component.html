@@ -1,1 +1,38 @@
-<p>profil-passager works!</p>
+<div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li>
+          <a routerLink="/dashboard/courses" routerLinkActive="active">
+            <fa-icon [icon]="['fas', 'car']"></fa-icon> Courses
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/personal-info" routerLinkActive="active">
+            <fa-icon [icon]="['fas', 'user']"></fa-icon> Mes Informations
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/contact-driver" routerLinkActive="active">
+            <fa-icon [icon]="['fas', 'phone']"></fa-icon> Contacter Conducteur
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/give-feedback" routerLinkActive="active">
+            <fa-icon [icon]="['fas', 'comment']"></fa-icon> Donner Avis
+          </a>
+        </li>
+        <li>
+          <a routerLink="/login">
+            <fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Déconnexion
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+
+

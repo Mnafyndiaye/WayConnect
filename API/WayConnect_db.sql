@@ -10,7 +10,7 @@ create Table Utilisateurs (
     prenom VARCHAR(255) NOT NULL,
     telephone INT NOT NULL UNIQUE,
     email VARCHAR(200) NOT NULL UNIQUE,
-    Mdp VARCHAR(300) NOT NULL,
+    Mdp VARCHAR(500) NOT NULL,
     userType ENUM('conducteur', 'passager') NOT NULL
 );
 
@@ -28,23 +28,25 @@ CREATE TABLE Course (
     dureeCours TIME,
     dateCours DATE,
     etat ENUM('En attente', 'En cour'),
-    idConducteur int FOREIGN KEY REFERENCES Utilisateurs(idUser)
-);
+    idConducteur INT, FOREIGN KEY (idConducteur) REFERENCES Utilisateurs(idUser));
 
 CREATE TABLE Avis (
     idAvis INT AUTO_INCREMENT PRIMARY KEY,
-    note tinyint,
+    note TINYINT,
     commentaire VARCHAR(4096),
-    passager_idPassager FOREIGN KEY REFERENCES Passagers(idPassager),
-    course_idCourse FOREIGN KEY REFERENCES Course(idCourse)
+    passager_idPassager INT,
+    course_idCourse INT,
+    FOREIGN KEY (passager_idPassager) REFERENCES Utilisateurs(idUser),
+    FOREIGN KEY (course_idCourse) REFERENCES Course(idCourse)
 );
-
 CREATE TABLE Reservations(
     idReservation INT AUTO_INCREMENT PRIMARY KEY,
     placeDispo INT,
     vehicule_matricule CHAR(7),
     etat ENUM('Accepter', 'Refuser'),
-    course_idCourse FOREIGN KEY REFERENCES Course(idCourse),
-    passager_idPassager FOREIGN KEY REFERENCES Utilisateurs(idUser)
+    course_idcourse INT,
+    FOREIGN KEY (course_idcourse) REFERENCES Course(idCourse),
+    passager_idPassager INT,
+    FOREIGN KEY (passager_idPassager) REFERENCES Utilisateurs(idUser)
 );
 

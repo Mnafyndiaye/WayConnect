@@ -11,11 +11,11 @@ router.post('/create', authMiddleware, async (req, res) => {
         const newCourse = await Course.create({
             title,
             description,
-            departure,
+            depart,
             destination,
             departureTime,
-            seatsAvailable,
-            price,
+            place_disponible,
+            prix,
             driverId
         });
 
