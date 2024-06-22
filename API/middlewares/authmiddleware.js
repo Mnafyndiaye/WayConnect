@@ -1,23 +1,30 @@
-// authMiddleware.js
-
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const secretKey = process.env.JWT_SECRET_KEY;
 
 const authMiddleware = (req, res, next) => {
-    // Vérifier si le JWT est présent dans l'en-tête de la requête
-    const token = req.headers.authorization;
-    if (!token) {
-        // Si le JWT n'est pas présent, rediriger l'utilisateur vers la page de connexion
-        return res.redirect('/login');
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(401).json({ error: 'Accès refusé. Aucun token fourni.' });
     }
 
-    // Vérifier la validité du JWT
-    jwt.verify(token, secretkey, (err, decoded) => {
-        if (err) {
-            // Si le JWT n'est pas valide, rediriger l'utilisateur vers la page de connexion
-            return res.redirect('/login');
-        }
-        // Si le JWT est valide, passer à la prochaine étape du middleware
+    const token = authHeader.split(' ')[1]; // Assuming the format is "Bearer <token>"
+
+    if (!token) {
+        return res.status(401).json({ error: 'Accès refusé. Aucun token fourni.' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, secretKey);
+        req.userId = decoded.userId;
         next();
-    });
+    } catch (error) {
+        res.status(400).json({ error: 'Token invalide.' });
+    }
 };
+
 module.exports = authMiddleware;

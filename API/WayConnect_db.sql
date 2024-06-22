@@ -5,7 +5,7 @@ CREATE DATABASE wayconnect_db;
 use wayconnect_db;
 
 create Table Utilisateurs (
-    idUser INT  PRIMARY KEY, 
+    idUser INT AUTO_INCREMENT PRIMARY KEY, 
     nom VARCHAR(255) NOT NULL, 
     prenom VARCHAR(255) NOT NULL,
     telephone INT NOT NULL UNIQUE,
@@ -24,11 +24,17 @@ CREATE Table Vehicules(
 
 CREATE TABLE Course (
     idCourse INT AUTO_INCREMENT PRIMARY KEY,
-    heureDepart TIME,
-    dureeCours TIME,
-    dateCours DATE,
-    etat ENUM('En attente', 'En cour'),
-    idConducteur INT, FOREIGN KEY (idConducteur) REFERENCES Utilisateurs(idUser));
+    title VARCHAR(250),
+    description VARCHAR(250),
+    depart VARCHAR(250),
+    destination VARCHAR(250),
+    heureDepart DATE,
+    siegeDisponible INT,
+    prix FLOAT, 
+    etat ENUM('En attente', 'En cour', 'Terminée'),
+    idConducteur INT, 
+    FOREIGN KEY (idConducteur) REFERENCES Utilisateurs(idUser)
+);
 
 CREATE TABLE Avis (
     idAvis INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,11 +48,10 @@ CREATE TABLE Avis (
 CREATE TABLE Reservations(
     idReservation INT AUTO_INCREMENT PRIMARY KEY,
     placeDispo INT,
-    vehicule_matricule CHAR(7),
-    etat ENUM('Accepter', 'Refuser'),
+    etat ENUM('Accepté', 'Refusé'),
     course_idcourse INT,
     FOREIGN KEY (course_idcourse) REFERENCES Course(idCourse),
-    passager_idPassager INT,
+    passager_idPassager INT, 
     FOREIGN KEY (passager_idPassager) REFERENCES Utilisateurs(idUser)
 );
 
