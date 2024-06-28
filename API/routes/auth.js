@@ -38,8 +38,6 @@ router.post('/inscription', async (req, res) => {
     }
 });
 // Route de connexion
-// Utilisation d'une variable d'environnement pour la clé secrète JWT
-
 router.post('/connexion', async (req, res) => {
     try {
         const { email, Mdp } = req.body;
