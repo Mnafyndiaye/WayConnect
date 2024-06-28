@@ -11,8 +11,8 @@ router.post('/create', authMiddleware, async (req, res) => {
             description, 
             depart, 
             destination, 
-            heuredepart, 
-            place_disponible, 
+            heureDepart, 
+            siegeDisponible, 
             prix } = req.body;
 
 
@@ -21,8 +21,8 @@ router.post('/create', authMiddleware, async (req, res) => {
             description,
             depart,
             destination,
-            heuredepart,
-            place_disponible,
+            heureDepart,
+            siegeDisponible,
             prix,
             idConducteur
         });
@@ -52,15 +52,19 @@ router.delete('/delete/:id', authMiddleware, async (req, res) => {
     }
 });
 
-router.get('/search', async (req, res) => {
+router.get('/search', authMiddleware, async (req, res) => {
     try {
-        const { departure, destination, departureTime } = req.query;
+        const { depart, destination, heureDepart } = req.query;
+        console.log('Received parameters:', { depart, destination, heureDepart });
+        if (!depart || !destination || !heureDepart) {
+            return res.status(400).json({ error: "All search parameters (depart, destination, heureDepart) must be provided" });
+        }
 
         const courses = await Course.findAll({
             where: {
-                departure,
+                depart,
                 destination,
-                departureTime
+                heureDepart
             }
         });
 

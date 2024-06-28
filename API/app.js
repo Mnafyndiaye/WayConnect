@@ -2,19 +2,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const courseRoutes = require('./routes/course');
+const bookingRoutes = require('./routes/booking');
 const authMiddleware = require('./middlewares/authMiddleware');
-const sequelize = require('./db');
 const app = express();
 require('dotenv').config();
-const port = process.env.PORT || 3000;
+require('./db');
+const port = process.env.PORT ;
 
 
-// Middleware pour analyser les corps de requête JSON
 app.use(express.json());
 
 // Utilisation des routes d'authentification
 app.use('/auth', authRoutes);
 app.use('/course', authMiddleware, courseRoutes);
+app.use('/booking', authMiddleware, bookingRoutes);
 
 // Synchronisation de Sequelize avec la base de données
 // sequelize.sync()

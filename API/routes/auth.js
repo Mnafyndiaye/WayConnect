@@ -2,10 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
-const dotenv = require('dotenv');
-dotenv.config();
 const router = express.Router()
-const secretKey = process.env.JWT_SECRET_KEY || 'default_secret'; // Utilisez votre propre gestion sécurisée des secrets
 
 //route d'inscription
 router.post('/inscription', async (req, res) => {
@@ -31,7 +28,7 @@ router.post('/inscription', async (req, res) => {
         });
 
         // Génération du token JWT
-        const token = jwt.sign({ userId: newUser.idUser }, secretKey);
+        const token = jwt.sign({ userId: newUser.idUser }, process.env.JWT_SECRET_KEY);
 
         // Réponse réussie avec le token
         res.status(201).json({ message: 'Utilisateur enregistré avec succès !', token });
@@ -65,7 +62,7 @@ router.post('/connexion', async (req, res) => {
         }
 
         // Génération du token JWT
-        const token = jwt.sign({ userId: user.idUser }, secretKey);
+        const token = jwt.sign({ userId: user.idUser }, process.env.JWT_SECRET_KEY);
 
         // Réponse réussie
         res.status(200).json({ message: 'Connexion réussie !', token });

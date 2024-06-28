@@ -1,8 +1,7 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
-
 // Configuration de la connexion à la base de données
-const sequelize = new Sequelize('wayconnect_db', process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+
+const sequelize = new Sequelize('wayconnect_db', 'apinafy', 'Passer123', {
     host: process.env.DB_HOST,
     dialect: 'mysql'
   });

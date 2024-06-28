@@ -6,27 +6,29 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 router.post('/reserve', authMiddleware, async (req, res) => {
     try {
-        const { courseId, seatsBooked } = req.body;
-        const userId = req.userId; // ID de l'utilisateur obtenu après authentification
+        const { 
+            course_idcourse, placeDispo 
+        } = req.body;
+        const passager_idPassager = req.userId; // ID de l'utilisateur obtenu après authentification
 
         // Vérifier si la course existe et s'il y a assez de sièges disponibles
-        const course = await Course.findByPk(courseId);
+        const course = await Course.findByPk(course_idcourse);
         if (!course) {
             return res.status(404).json({ message: 'Course non trouvée' });
         }
-        if (course.seatsAvailable < seatsBooked) {
+        if (course.siegeDisponible < placeDispo) {
             return res.status(400).json({ message: 'Pas assez de sièges disponibles' });
         }
 
         // Créer la réservation
         const booking = await Booking.create({
-            userId,
-            courseId,
-            seatsBooked
+            passager_idPassager,
+            course_idcourse,
+            placeDispo
         });
 
         // Mettre à jour le nombre de sièges disponibles
-        course.seatsAvailable -= seatsBooked;
+        course.siegeDisponible -= placeDispo;
         await course.save();
 
         res.status(201).json({ message: 'Réservation réussie', booking });

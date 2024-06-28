@@ -1,29 +1,41 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+const sequelize = require('../db');
 const Course = require('./course');
-const User = require('./user');
+const User = require('./Users');
 
-const Booking = sequelize.define('booking', {
-    userId: {
+const Booking = sequelize.define('reservations', {
+    idReservation: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    placeDispo: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    passager_idPassager: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: User,
-            key: 'id'
+            key: 'idUser'
         }
     },
-    courseId: {
+    course_idcourse: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Course,
-            key: 'id'
+            key: 'idCourse'
         }
     },
-    seatsBooked: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+    etat: { 
+        type: DataTypes.ENUM('Accepté', 'Refusé', 'En attente'), 
+        allowNull: false, 
+        defaultValue: 'En attente' 
     }
+},{
+    timestamps: false // Cette option ajoutera createdAt et updatedAt
 });
 
 module.exports = Booking;
