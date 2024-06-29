@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rechercher Courses</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="../../assets/images/itineraire.png" alt="trajet">
+      <h1>Rechercher des Courses</h1>
+    </header>
+    <br><br><br>
+    <main>
+      <section class="formulaire">
+        <form (ngSubmit)="rechercherCourses()" [formGroup]="formGroup">
+          <div class="container-trajet">
+            <div class="Trajet">
+              <img src="../../assets/images/broche.png" alt="trajet">
+              <div class="inputs">
+                <input type="text" id="depart" formControlName="depart" placeholder="Point de départ">
+                <hr><br>
+                <input type="text" id="arrivee" formControlName="arrivee" placeholder="Point d'arrivée">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="heure-date">
+            <div class="heure">
+              <label for="heure_depart">Heure de départ:</label><br>
+              <input type="time" id="heure_depart" formControlName="heureDepart" placeholder="Heure">
+            </div>
+            <div class="date">
+              <label for="date_depart">Date de départ:</label><br>
+              <input type="date" id="date_depart" formControlName="dateDepart">
+            </div>
+          </div>
+          <br>
+
+          <br><br>
+          <div class="container-boutons">
+            <button type="submit">Rechercher des Courses</button><br><br>
+            <button type="reset" (click)="clearForm()">Annuler</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'WayConnect'`, () => {
+  it(`should have as title 'EduOps'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('WayConnect');
+    expect(app.title).toEqual('EduOps');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('WayConnect app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('EduOps app is running!');
   });
 });

@@ -1,1 +1,32 @@
-<p>sidenav works!</p>
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">WC</button>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Way COnnect</div>
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of navData">
+      <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+          {{data.label}}
+        </span>
+      </a>
+    </li>
+  </ul>
+  <div class="user-info" [ngClass]="{ 'collapsed':!collapsed }">
+    <i class="fas fa-user"></i>
+    <div class="user-details" *ngIf="collapsed">
+      <div class="user-name">{{ fullName }}</div>
+      <div class="user-role">{{ getuserRole(userRole) }}</div>
+    </div>
+    <button class="btn-logout" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+
+
+</div>

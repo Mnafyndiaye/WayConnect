@@ -1,0 +1,25 @@
+<!-- <div>
+    <h2>Mes Courses</h2>
+    <ul>
+      <li *ngFor="let course of courses">
+        {{ course.depart }} - {{ course.arrivee }} ({{ course.dateDepart }})
+      </li>
+    </ul>
+  </div>
+   -->
+
+   <!-- mes-courses.component.html -->
+
+<div *ngIf="courses.length > 0">
+  <h2>Liste des courses enregistrées</h2>
+  <ul>
+    <li *ngFor="let course of courses">
+      <p>Départ: {{ course.depart }}</p>
+      <p>Arrivée: {{ course.arrivee }}</p>
+      <!-- Ajoutez d'autres détails de la course ici -->
+    </li>
+  </ul>
+</div>
+<div *ngIf="courses.length === 0">
+  <p>Aucune course trouvée pour cet utilisateur.</p>
+</div>
